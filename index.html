@@ -1,13 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>to do list</title>
+    <link href="{% static 'checklist.png' %}" rel="icon">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    hello
     
+    <div id="con">
+        <div id="inpBar">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input id="inp" name="inpp" placeholder="ADD YOUR TASK..." type="text">
+                <input type="submit" value="+" id="enter">
+            </form>
+        </div>
+
+        <div id="taskCon">
+            {% for task in tasks %}
+                <div>
+                    <div class="task">
+                        {{task.work}}
+                        <!-- <a href="" class="done">👍🏻</a> -->
+                        <a href="{% url 'dell' task.id %}" class="done">👍🏻</a>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<!-- <script src="{% static 'main.js' %}"></script> -->
 </body>
 </html>
